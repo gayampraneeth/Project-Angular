@@ -1,0 +1,137 @@
+
+<h1>3.Components</h1>
+  <div>
+    <new-cmp [inputPropWithoutAlias]="inputPropParent" [inputFromParentWithAlias]="inputPropParentWithAlias" (valueChangeEvent)="callFromChild($event)"></new-cmp>
+  </div>
+
+<h1>4.Displaying Data & Handling Events</h1>
+  <h3>String Interpolation</h3>
+  <p>Welcome {{title}}</p>
+
+  <h3>Property Binding</h3>
+  <p [textContent]="title"></p>
+
+  <h3>Event Binding</h3>
+  <button (click)="myClickFunction($event)">
+      Click Event
+  </button>
+  <h3>Dropdown with Event binding</h3>
+  <div> 
+    Months :
+    <select (change) = "changemonths($event)">
+      <option *ngFor="let i of months">{{i}}</option>
+    </select>
+  </div>
+  
+  <h3>Two-Way Binding - 1st way</h3>
+  <input [value]="username" (keyup)="username=$event.target.value" />
+  <p>Hello {{username}}</p>
+
+  <h3>Two-Way Binding - 2nd way</h3>
+  <input [(ngModel)]="username1" />
+  <p>Hello {{username1}}</p>
+  
+<h1>5.Directives</h1>
+  <h3>If Then Else & ng-template</h3>
+  <div>
+      <span *ngIf = "isavailable">Condition If is valid.</span> 
+      <!--over here based on if condition the text condition is valid is displayed. 
+      If the value of isavailable is set to false it will not display the text.-->
+  </div>
+  <div>
+      <span *ngIf="isavailable1; else condition1">Condition If else is valid.</span>
+      <ng-template #condition1>Condition If else is invalid</ng-template>
+  </div>
+  <div>
+      <span *ngIf="isavailable2; then condition2 else condition3">Condition If then else  is valid in SPAN.</span>
+      <ng-template #condition2>Condition If then else is valid</ng-template>
+      <ng-template #condition3>Condition If then else is invalid</ng-template>
+  </div>
+
+  <h3>ngFor</h3>
+  <div> 
+    Months :
+    <select>
+      <option *ngFor="let i of months">{{i}}</option>
+    </select>
+  </div>
+
+  <h3>ngSwitchCase</h3>
+  <ul [ngSwitch]="person">
+    <li *ngSwitchCase="'Dave'">Hello Dave</li>
+    <li *ngSwitchCase="'Mike'">Hello Mike</li>
+    <li *ngSwitchCase="'Rob'">Hello Rob</li>
+    <li *ngSwitchDefault>Hello Praneeth</li>
+  </ul>
+
+  <h3>Custom Directives</h3>
+  <div style="text-align:left">
+    <span changeText >Welcome to {{title}}.</span>
+  </div>
+
+<h1>6.Pipes</h1>
+  <div style = "width:100%;float:left;">
+    <div style = "width:60%;float:left;border:solid 1px black;">
+        <h3>Uppercase Pipe:</h3>
+        <b>{{title | uppercase}}</b><br/>
+        
+        <h3>Lowercase Pipe:</h3>
+        <b>{{title | lowercase}}</b>
+        
+        <h3>Currency Pipe:</h3>
+        <b>{{6589.23 | currency:"USD"}}</b><br/>
+        <b>{{6589.23 | currency:"USD":true}}</b> //Boolean true is used to get the sign of the currency.
+        
+        <h3>Date pipe:</h3>
+        <b>{{todaydate | date:'d/M/y'}}</b><br/>
+        <b>{{todaydate | date:'shortTime'}}</b>
+        
+        <h3>Decimal Pipe:</h3>
+        <b>{{ 454.78787814 | number: '3.2-2' }}</b> // 3 is for main integer, 4 -4 are for integers to be displayed.
+    
+        <h3>Json Pipe:</h3>
+        <b>{{ jsonval | json }}</b>
+        <h3>Percent Pipe:</h3>
+        <b>{{00.54565 | percent}}</b>
+        <h3>Slice Pipe:</h3>
+        <b>{{months | slice:2:6}}</b> 
+        // here 2 and 6 refers to the start and the end index
+    </div>
+    <div style = "width:10%;float:left;border:solid 1px black;">
+      <h3>Custom Pipe</h3>
+      <b>Square root of 25 is: {{25 | sqrt}}</b>
+      <br/>
+    </div>
+  </div>
+
+<h1>7.Services</h1>
+  <h3>Property from Service</h3>
+  <p>{{propertyFromService}}</p>
+
+  <h3>Calling a Service Function</h3>
+  {{todaydate | date:'d/M/y'}}<br/>
+
+  <h3>Loading data using http Service</h3>
+  <button (click)="loadDataUsingHttpService($event)">
+      Load Data Using http in component
+  </button>
+  <button (click)="loadDataFromService($event)">
+    Load Data Using http in Service
+  </button>
+  <button (click)="clearData()">Clear</button>
+  <ul *ngFor = "let data of httpdata">
+      <li>Name : {{data.name}} Address: {{data.address.city}}</li>
+  </ul>
+
+<h1>8.Routing</h1>
+<div>
+  <ul>
+    <li>
+      <a routerLink="new-cmp"> First Component </a>
+    </li>
+    <li>
+      <a routerLink="new-cmp1"> Second Component </a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,32 @@
+<div >
+  <div *ngIf='showError'>{{errorMsg}}</div> 
+  <div *ngIf="taskTemp.touched && !taskTemp.valid">
+    <div *ngIf="taskTemp.errors.required">
+      Taskname is required.
+    </div>
+    <div *ngIf="taskTemp.errors.minlength">
+      Taskname lenght should be minimum {{taskTemp.errors.minlength.requiredLength}}
+    </div>
+  </div>
+  <div *ngIf="taskDays.touched && !taskDays.valid">
+    <div *ngIf="taskDays.errors.required">
+      Days is required.
+    </div>
+    
+  </div>
+
+  <form #toDoForm="ngForm">
+    <mat-form-field>
+      <label>Task Name:</label>
+      <input matInput type="text" name="task" [(ngModel)]='todo.taskName' #taskTemp="ngModel" required minlength="4"/>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <label>Days:</label>
+      <input matInput type="number" name="days" [ngModel]='todo.noOfDays' #taskDays="ngModel" (ngModelChange)="todo.noOfDays=$event" required/>
+    </mat-form-field>
+    
+    <button mat-raised-button color='primary' (click)='save()' [disabled]="!toDoForm.valid">Save</button>
+    <button mat-raised-button color='accent' (click)='cancel()'>Cancel</button>
+  </form>
+</div>

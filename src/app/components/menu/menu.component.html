@@ -1,0 +1,32 @@
+
+<nav mat-tab-nav-bar backgroundColor='primary'>
+    <a mat-tab-link
+       [routerLink]="['Home', user]"
+       routerLinkActive 
+       #homeRef="routerLinkActive"
+       [active]="homeRef.isActive">
+        Home
+    </a>
+    <a matTabLink
+       [routerLink]="['ToDos']"
+       routerLinkActive 
+       #todosRef="routerLinkActive"
+       [active]="todosRef.isActive">
+       ToDos
+    </a>
+    <a matTabLink
+       [routerLink]="['AngularConcepts']"
+       routerLinkActive 
+       #acRef="routerLinkActive"
+       [active]="acRef.isActive">
+       Angular Concepts
+    </a>
+    <a matTabLink
+       [routerLink]="['/logout']"
+       routerLinkActive 
+       #logOutRef="routerLinkActive"
+       [active]="logOutRef.isActive">
+       LogOut
+    </a>
+
+</nav>

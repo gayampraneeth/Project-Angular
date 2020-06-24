@@ -1,0 +1,19 @@
+<div>
+  <div *ngIf='!isValidUser'>{{errorMsg}}</div>
+
+  <form>
+    <div>
+      <label>User Name:</label>
+      <input type="text" [(ngModel)]="userName" name="userName"/>
+    </div>
+    <div>
+      <label>Password:</label>
+      <input type="text" [(ngModel)]="passWord" name="password"/>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </div>
+  </form>
+
+</div>
+
